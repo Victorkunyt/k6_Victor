@@ -1,0 +1,21 @@
+Start :
+ 1 - winget install k6 no terminal, Para inserir o gerenciador de pacote
+ 2 - Instalar o Docker no Computador
+ 3 - Instalar as extensões Docker e Grafana
+ 4 - instalar o WSL padrão Linux, só assim para o Docker funcionar
+ 5 - Entrar no Docker e Startar os Conteners
+ 
+Localhost : http://localhost:3000/d/k6/k6-load-testing-results?orgId=1&refresh=5s
+
+Comandos Principais :
+
+docker-compose up -d influxdb grafana = Para rodar os containers
+docker-compose run k6 run /scripts/{nomedoTeste}.js = Para rodar o Script
+
+Documentação :
+
+influxdb: banco de dados que roda a imagem influxdb:1.8 na porta 8086 e tem acesso às redes k6 e grafana
+grafana: visualização dos dados que roda a imagem grafana/grafana:latest na porta 3000 e tem acesso apenas a rede grafana
+k6: executa os testes de performance que roda a imagem loadimpact/k6:latest na porta 6565 e tem acesso apenas a rede k6
+
+// testes de imersão

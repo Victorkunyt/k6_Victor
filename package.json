@@ -1,0 +1,17 @@
+{
+  "name": "k6",
+  "version": "0.0.2",
+  "description": "Projeto para arquitetura de testes de performance usando o k6",
+  "main": "index.js",
+  "author": "Victor QA",
+  "scripts": {
+    "Load_run": "docker-compose run k6 run /scripts/Load.test.js",
+    "Smoke_run": "docker-compose run k6 run /scripts/Smoke.test.js",
+    "Speak_run": "docker-compose run k6 run /scripts/Speak.test.js",
+    "Stress_run": "docker-compose run k6 run /scripts/Stress.test.js",
+    "Submersion_run": "docker-compose run k6 run /scripts/Submersion.test.js",
+    
+    "start_Container": "docker-compose up -d influxdb grafana"
+  }
+}
+
