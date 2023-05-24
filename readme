@@ -6,7 +6,7 @@ Start :
 5 - Entrar no Docker e Startar os Conteners
 6 - Instalar o K6 via Terminal. Acessar = https://k6.io/docs/get-started/installation/
 
-Localhost : http://localhost:3000/d/k6/k6-load-testing-results?orgId=1&refresh=5s para 
+Localhost : http://localhost:3000/d/k6/k6-load-testing-results?orgId=1&refresh=5s para acessar o Grafana e ver os gráficos em tempo em real
 
 Comandos Principais :
 
@@ -19,5 +19,25 @@ Conteners: Um contêiner é uma unidade leve e isolada que contém tudo o que é
 influxdb: banco de dados que roda a imagem influxdb:1.8 na porta 8086 e tem acesso às redes k6 e grafana
 grafana: visualização dos dados que roda a imagem grafana/grafana:latest na porta 3000 e tem acesso apenas a rede grafana
 k6: executa os testes de performance que roda a imagem loadimpact/k6:latest na porta 6565 e tem acesso apenas a rede k6
+Swagger: https://reqres.in/
 
-// testes de imersão
+Exemplos de Payloads:
+
+// exemplo passando Headers = let res = http.get(`${ENV}users?page=2`, {headers: { Aceepts: "application/json" },
+// exemplo passando um token Bearer = let res = http.get(`${ENV}users?page=2`, { headers: { Authorization: `Bearer ${token}` } });
+
+//Exemplo para passar um Body
+
+/\*export default function () {
+const requestBody = {
+// Seu corpo da requisição aqui  
+ key1: "valor1",
+key2: "valor2"
+};
+
+const res = http.post(`${ENV}users?page=2`, JSON.stringify(requestBody), {
+headers: {
+"Content-Type": "application/json"
+}
+});
+\*/

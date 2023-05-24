@@ -1,6 +1,6 @@
-import http from 'k6/http'
-import { check, sleep } from 'k6'
-const ENV = 'https://reqres.in/api/'
+import http from "k6/http";
+import { check, sleep } from "k6";
+const ENV = "https://reqres.in/api/";
 
 export const options = {
 	stages: [
@@ -15,10 +15,9 @@ export const options = {
 		http_req_duration: ["p(95)<2000"], // 95% das requisições devem ser concluídas em menos de 500ms
 	},
 };
-  
 
-export default function() {
-    let res = http.get(`${ENV}users?page=2`);
-    check(res, { "status is 200": (r) => r.status === 200 })
-    sleep(.300)
+export default function () {
+	let res = http.get(`${ENV}users?page=2`);
+	check(res, { "status is 200": (r) => r.status === 200 });
+	sleep(0.3);
 }

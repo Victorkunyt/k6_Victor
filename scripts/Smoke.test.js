@@ -1,7 +1,7 @@
 import { sleep, check } from "k6";
 import http from "k6/http";
 import { Trend, Rate } from "k6/metrics";
-const ENV = 'https://reqres.in/api/'
+const ENV = "https://reqres.in/api/";
 
 export const options = {
 	vus: 10,
@@ -24,6 +24,7 @@ export default function () {
 
 	check(res, {
 		"Status deve retornar 200": (r) => r.status === 200,
+		"Returned Body": (r) => r.body !== null,
 	});
 
 	sleep(1);
