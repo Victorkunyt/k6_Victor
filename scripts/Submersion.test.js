@@ -13,7 +13,7 @@ export const options = {
 export default function () {
 	const requestBody = {
 		name: generateRandomName(),
-		job: gerarCPF(),
+		job: GD,
 	};
 
 	const res = http.post(`${ENV}api/users`, JSON.stringify(requestBody), {
@@ -80,34 +80,8 @@ export function generateRandomName() {
 	return name;
 }
 
-/////////////////// CPF /////////////////
+/////////////////// CARGOS /////////////////
 
-export function gerarCPF() {
-	let cpf = "";
+let Gender = ["DEV", "QA", "PO", "AGILEMASTER", "COORDENADOR"];
 
-	for (let i = 0; i < 9; i++) {
-		cpf += Math.floor(Math.random() * 10);
-	}
-
-	let sum = 0;
-	for (let i = 0; i < 9; i++) {
-		sum += parseInt(cpf.charAt(i)) * (10 - i);
-	}
-	let digit = 11 - (sum % 11);
-	if (digit > 9) {
-		digit = 0;
-	}
-	cpf += digit;
-
-	sum = 0;
-	for (let i = 0; i < 10; i++) {
-		sum += parseInt(cpf.charAt(i)) * (11 - i);
-	}
-	digit = 11 - (sum % 11);
-	if (digit > 9) {
-		digit = 0;
-	}
-	cpf += digit;
-
-	return cpf;
-}
+const GD = Gender[Math.floor(Math.random() * Gender.length)];
