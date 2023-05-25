@@ -18,6 +18,7 @@ export const options = {
 
 export default function () {
 	let res = http.get(`${ENV}users?page=2`);
+
 	check(res, { "status is 200": (r) => r.status === 200 });
 	sleep(0.3);
 }

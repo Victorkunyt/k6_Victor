@@ -25,6 +25,7 @@ export default function () {
 
 	check(res, {
 		"Status deve retornar 200": (r) => r.status === 200,
+		"Returned Body": (r) => r.body !== null,
 	});
 
 	sleep(1);
