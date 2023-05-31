@@ -4,8 +4,8 @@ const ENV = "https://reqres.in/api/";
 // testes de imersão
 export const options = {
 	stages: [
-		{ duration: "30s", target: 18 }, // ramp up
-		{ duration: "30s", target: 18 }, // periodo de Stress
+		{ duration: "30s", target: 100 }, // ramp up
+		{ duration: "30s", target: 100 }, // periodo de Stress
 		{ duration: "30s", target: 0 }, // ramp down
 	],
 };
@@ -16,7 +16,7 @@ export default function () {
 		job: GD,
 	};
 
-	const res = http.post(`${ENV}api/users`, JSON.stringify(requestBody), {
+	let res = http.post(`${ENV}api/users`, JSON.stringify(requestBody), {
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -24,7 +24,7 @@ export default function () {
 	console.log(requestBody);
 	check(res, {
 		"Status deve retornar 201": (r) => r.status === 201,
-		"Returned Body": (r) => r.body !== null,
+		"Deverá retornar o Body response": (r) => r.body !== null,
 	});
 
 	sleep(1);
@@ -33,6 +33,9 @@ export default function () {
 ///////////////////////// MASSA DE DADOS /////////////////////////////
 
 //////// NOME ///////////////
+
+var generatedNames = new Set();
+
 export function generateRandomName() {
 	var vowels = ["a", "e", "i", "o", "u"];
 	var consonants = [
@@ -77,7 +80,16 @@ export function generateRandomName() {
 		}
 	}
 
-	return name;
+	// Verificar se o nome já foi gerado antes
+	if (generatedNames.has(name)) {
+		console.warn("Nome repetido encontrado: " + name);
+		// Se for repetido, gerar um novo nome chamando a função novamente recursivamente
+		return generateRandomName();
+	} else {
+		// Se for único, adicionar o nome ao conjunto de nomes gerados e retorná-lo
+		generatedNames.add(name);
+		return name;
+	}
 }
 
 /////////////////// CARGOS /////////////////
